@@ -113,3 +113,4 @@ venv.bak/
 *.xml
 *.iml
 /bash/distributed_imagenet.sh
+data
