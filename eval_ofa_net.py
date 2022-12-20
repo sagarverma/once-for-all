@@ -55,7 +55,7 @@ run_config = PracticalDLRunConfig(test_batch_size=args.batch_size, n_worker=args
         ofa_network.set_active_subnet(ks=7, e=6, d=4) 
 """
 # ofa_network.sample_active_subnet()
-ofa_network.set_active_subnet(ks=3, e=2, d=2)
+ofa_network.set_active_subnet(ks=7, e=4, d=4)
 subnet = ofa_network.get_active_subnet(preserve_weight=True)
 
 """ Test sampled subnet 
