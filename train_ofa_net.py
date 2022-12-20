@@ -283,7 +283,7 @@ if __name__ == "__main__":
             args.ofa_checkpoint_path = "exp/normal2kernel/checkpoint/model_best.pth.tar"
         else:
             args.ofa_checkpoint_path = "exp/kernel2kernel_depth/phase1/checkpoint/model_best.pth.tar"
-            
+
         train_elastic_depth(train, run_manager, args, validate_func_dict)
     elif args.task == "expand":
         from ofa.imagenet_classification.elastic_nn.training.progressive_shrinking import (
@@ -291,10 +291,7 @@ if __name__ == "__main__":
         )
 
         if args.phase == 1:
-            args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D234_E6_K357",
-                model_dir=".torch/ofa_checkpoints/"
-            )
+            args.ofa_checkpoint_path = "exp/kernel2kernel_depth/phase2/checkpoint/model_best.pth.tar"
         else:
             args.ofa_checkpoint_path = download_url(
                 "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D234_E46_K357",
