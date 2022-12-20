@@ -24,7 +24,7 @@ parser.add_argument(
     default=100,
 )
 parser.add_argument("-j", "--workers", help="Number of workers", type=int, default=20)
-parser.add_argument("-w", "--weight", help="weight path", type=str)
+parser.add_argument("-w", "--weight", help="weight path", required=True, type=str)
 
 args = parser.parse_args()
 if args.gpu == "all":
