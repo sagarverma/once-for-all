@@ -54,7 +54,7 @@ class RunManager:
             self.device = torch.device("cpu")
         # initialize model (default)
         if init:
-            init_models(run_config.model_init)
+            init_models(net, run_config.model_init)
 
         # net info
         net_info = get_net_info(
@@ -106,7 +106,7 @@ class RunManager:
                         net_params.append(param)
         self.optimizer = self.run_config.build_optimizer(net_params)
 
-        self.net = torch.nn.DataParallel(self.net)
+        # self.net = torch.nn.DataParallel(self.net)
 
     """ save path and log path """
 
@@ -128,7 +128,7 @@ class RunManager:
 
     @property
     def network(self):
-        return self.net.module if isinstance(self.net, nn.DataParallel) else self.net
+        return self.net #.module if isinstance(self.net, nn.DataParallel) else self.net
 
     def write_log(self, log_str, prefix="valid", should_print=True, mode="a"):
         write_log(self.logs_path, log_str, prefix, should_print, mode)
@@ -241,8 +241,8 @@ class RunManager:
     ):
         if net is None:
             net = self.net
-        if not isinstance(net, nn.DataParallel):
-            net = nn.DataParallel(net)
+        # if not isinstance(net, nn.DataParallel):
+        #     net = nn.DataParallel(net)
 
         if data_loader is None:
             data_loader = (

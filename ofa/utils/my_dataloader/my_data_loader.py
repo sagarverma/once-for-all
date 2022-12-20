@@ -12,7 +12,7 @@ import multiprocessing as python_multiprocessing
 import torch
 import torch.multiprocessing as multiprocessing
 from torch._utils import ExceptionWrapper
-from torch.multiprocessing import Queue as queue
+# from torch.multiprocessing import Queue as queue
 from torch._six import string_classes
 from torch.utils.data.dataset import IterableDataset
 from torch.utils.data import Sampler, SequentialSampler, RandomSampler, BatchSampler
@@ -800,7 +800,8 @@ class _MultiProcessingDataLoaderIter(_BaseDataLoaderIter):
 
         if self._pin_memory:
             self._pin_memory_thread_done_event = threading.Event()
-            self._data_queue = queue.Queue()
+            manager = multiprocessing.Manager()
+            self._data_queue = manager.Queue()
             pin_memory_thread = threading.Thread(
                 target=_utils.pin_memory._pin_memory_loop,
                 args=(
@@ -808,6 +809,7 @@ class _MultiProcessingDataLoaderIter(_BaseDataLoaderIter):
                     self._data_queue,
                     torch.cuda.current_device(),
                     self._pin_memory_thread_done_event,
+                    "cuda"
                 ),
             )
             pin_memory_thread.daemon = True
