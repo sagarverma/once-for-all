@@ -114,3 +114,4 @@ venv.bak/
 *.iml
 /bash/distributed_imagenet.sh
 data
+exp
