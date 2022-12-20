@@ -115,3 +115,4 @@ venv.bak/
 /bash/distributed_imagenet.sh
 data
 exp
+.torch
