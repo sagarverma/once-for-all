@@ -280,10 +280,7 @@ if __name__ == "__main__":
         )
 
         if args.phase == 1:
-            args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K357",
-                model_dir=".torch/ofa_checkpoints/"
-            )
+            args.ofa_checkpoint_path = "exp/normal2kernel/checkpoint/model_best.pth.tar"
         else:
             args.ofa_checkpoint_path = download_url(
                 "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D34_E6_K357",
