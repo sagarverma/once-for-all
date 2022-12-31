@@ -26,6 +26,7 @@ parser.add_argument(
 parser.add_argument("-j", "--workers", help="Number of workers", type=int, default=20)
 parser.add_argument("-w", "--weight", help="weight path", required=True, type=str)
 parser.add_argument("-s", "--img_size", help="Input image size", default=76, type=int)
+parser.add_argument("--save_weight", helpt="Path where weight should be saved", default=None)
 
 args = parser.parse_args()
 if args.gpu == "all":
@@ -70,3 +71,8 @@ print(subnet.module_str)
 
 loss, (top1, top5) = run_manager.validate(net=subnet)
 print("Results: loss=%.5f,\t top1=%.1f,\t top5=%.1f" % (loss, top1, top5))
+
+if args.save_weight:
+    torch.onnx.export(subnet, 
+                      torch.randn(1, 3, args.img_size, args.img_size), 
+                      args.save_weight)
