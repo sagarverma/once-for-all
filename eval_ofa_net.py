@@ -74,5 +74,5 @@ print("Results: loss=%.5f,\t top1=%.1f,\t top5=%.1f" % (loss, top1, top5))
 
 if args.save_weight:
     torch.onnx.export(subnet, 
-                      torch.randn(1, 3, args.img_size, args.img_size.cuda()), 
+                      torch.randn(1, 3, args.img_size, args.img_size).cuda(), 
                       args.save_weight)
