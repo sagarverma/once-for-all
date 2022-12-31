@@ -26,7 +26,7 @@ parser.add_argument(
 parser.add_argument("-j", "--workers", help="Number of workers", type=int, default=20)
 parser.add_argument("-w", "--weight", help="weight path", required=True, type=str)
 parser.add_argument("-s", "--img_size", help="Input image size", default=76, type=int)
-parser.add_argument("--save_weight", helpt="Path where weight should be saved", default=None)
+parser.add_argument("--save_weight", help="Path where weight should be saved", default=None)
 
 args = parser.parse_args()
 if args.gpu == "all":
